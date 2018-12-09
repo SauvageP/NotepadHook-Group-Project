@@ -28,13 +28,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	DWORD* processID = new DWORD;
 
 	GetWindowThreadProcessId(windowHandle, processID);
-
-	wcout << "Grabbed Notepad PID: \n";
-	wcout << *processID << endl;
-	DWORD processId;
-	std::wcout << "Enter the target process Id: ";
-	//std::cin >> processId;
-	processId = (DWORD)*processID;
+	DWORD processId = (DWORD)*processID;
 
 
 	WCHAR* dllToInject = L"..\\x64\\Debug\\Notepad_Hook.dll";
