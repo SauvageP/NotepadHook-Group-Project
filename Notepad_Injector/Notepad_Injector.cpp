@@ -33,8 +33,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	wcout << *processID << endl;
 	DWORD processId;
 	std::wcout << "Enter the target process Id: ";
-	std::cin >> processId;
-
+	//std::cin >> processId;
+	processId = (DWORD)*processID;
 
 
 	WCHAR* dllToInject = L"..\\x64\\Debug\\Notepad_Hook.dll";
