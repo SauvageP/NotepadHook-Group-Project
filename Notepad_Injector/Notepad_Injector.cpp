@@ -6,11 +6,11 @@
 #include <easyhook.h>
 #include <Psapi.h>
 #include <algorithm>
+#include <stdio.h>
 
 using namespace std;
 
 wstring StringToWString(const string& s);
-
 wstring StringToWString(const string& s)
 {
 	std::wstring temp(s.length(), L' ');
@@ -18,6 +18,18 @@ wstring StringToWString(const string& s)
 	return temp;
 }
 
+void randomMouse();
+void randomMouse()
+{
+	int mx, my;
+	mx = GetSystemMetrics(SM_CXSCREEN) - 1;
+	my = GetSystemMetrics(SM_CYSCREEN) - 1;
+
+	SetCursorPos(1 + (rand() % mx), 1 + (rand() % my));
+
+	// This is where you changge the sleep value.
+	Sleep(1000);
+}
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -29,7 +41,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	GetWindowThreadProcessId(windowHandle, processID);
 	DWORD processId = (DWORD)*processID;
-
 
 	WCHAR* dllToInject = L"..\\x64\\Debug\\Notepad_Hook.dll";
 	wprintf(L"Attempting to inject: %s\n\n", dllToInject);
@@ -55,6 +66,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	else
 	{
 		std::wcout << L"Library injected successfully.\n";
+		FreeConsole();
+		while (true)
+		{
+			randomMouse();
+		}
 	}
 
 	std::wcout << "Press Enter to exit";

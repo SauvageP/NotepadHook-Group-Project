@@ -21,7 +21,7 @@ NTSTATUS NtCreateFileHook(
 ){
 	//This is where to add code or run an executable. Here, I created a popup message displaying my message. You can also add buttons with labels. 
 
-	MessageBox(GetActiveWindow(), (LPCWSTR)L"P4wn by Gabriel!", (LPCWSTR)L"Testing", MB_ICONWARNING | MB_OK);
+	MessageBox(GetActiveWindow(), (LPCWSTR)L"P4wn'd by Gabriel!", (LPCWSTR)L"Testing", MB_ICONWARNING | MB_OK);
 	return NtCreateFile(FileHandle,DesiredAccess,ObjectAttributes,IoStatusBlock,AllocationSize,FileAttributes,ShareAccess,
 		CreateDisposition,CreateOptions,EaBuffer,EaLength);
 }
