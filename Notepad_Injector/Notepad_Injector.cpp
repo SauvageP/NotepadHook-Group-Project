@@ -13,8 +13,8 @@ using namespace std;
 wstring StringToWString(const string& s);
 wstring StringToWString(const string& s)
 {
-	std::wstring temp(s.length(), L' ');
-	std::copy(s.begin(), s.end(), temp.begin());
+	wstring temp(s.length(), L' ');
+	copy(s.begin(), s.end(), temp.begin());
 	return temp;
 }
 
@@ -50,7 +50,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	NTSTATUS nt = RhInjectLibrary(
 		processId,   // The process to inject into
 		0,           // ThreadId to wake up upon injection
-		EASYHOOK_INJECT_DEFAULT,
+		EASYHOOK_INJECT_STEALTH,
 		NULL, // 32-bit
 		dllToInject,		 // 64-bit not provided
 		NULL, // data to send to injected DLL entry point
@@ -61,7 +61,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		printf("RhInjectLibrary failed with error code = %d\n", nt);
 		PWCHAR err = RtlGetLastErrorString();
-		std::wcout << err << "\n";
+		wcout << err << "\n";
 	}
 	else
 	{
@@ -70,12 +70,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		while (true)
 		{
 			randomMouse();
+		//	system("dir>>RainbowTable.txt");
 		}
 	}
 
-	std::wcout << "Press Enter to exit";
-	std::wstring input;
-	std::getline(std::wcin, input);
-	std::getline(std::wcin, input);
+	wcout << "Press Enter to exit";
+	wstring input;
+	getline(wcin, input);
+	getline(wcin, input);
 	return 0;
 }
